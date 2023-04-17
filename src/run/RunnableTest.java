@@ -2,16 +2,23 @@ package run;
 
 import java.util.ArrayList;
 
-public class ThreadTest extends Thread{
+/**
+ * 보통 쓰레드 객체를 만들 때 위의 예처럼 Thread 클래스를 상속하여 만들기도 하지만
+ * 보통은 Runnable 인터페이스를 구현하도록 하는 방법을 주로 사용한다.
+ * 왜냐하면 Thread 클래스를 상속하면 다른 클래스를 상속할 수 없기 때문이다.
+ * @author user
+ *
+ */
+public class RunnableTest implements Runnable{ // Thread를 extends 하던 것에서 Runnable을 implements 하도록 변경되었다.
 	
 	int seq;
     
 	
-	public ThreadTest() {
+	public RunnableTest() {
         
     }
 	
-    public ThreadTest(int seq) {
+    public RunnableTest(int seq) {
         this.seq = seq;
     }
     
@@ -34,10 +41,10 @@ public class ThreadTest extends Thread{
     /**
      *  쓰레드가 종료되기 전에 main 메서드가 종료된다.
      */
-	public void threadTest1() {
+	public void RunnableTest1() {
 		
-		 for (int i = 0; i < 10; i++) {  // 총 10개의 쓰레드를 생성하여 실행한다.
-			 ThreadTest t = new ThreadTest(i);
+		 for (int i = 0; i < 10; i++) {  // 총 10개의 쓰레드를 생성하여 실행한다.			 
+			 Thread t = new Thread(new RunnableTest(i)); 
 	            t.start();
 	        }	        
 	    }
@@ -48,12 +55,12 @@ public class ThreadTest extends Thread{
 	   * 쓰레드 프로그래밍시 가장 많이 실수하는 부분이 바로 쓰레드가 종료되지 않았는데 쓰레드가 종료된 줄 알고 그 다음 로직을 수행하게 만드는 일이다.
 	   * 쓰레드가 종료된 후 그 다음 로직을 수행해야 할 때 꼭 필요한 join 메서드를 꼭 기억하자.
 	   */
-	public void threadTest2() {
+	public void RunnableTest2() {
 		
 		ArrayList<Thread> threads = new ArrayList<>(); // 생성된 쓰레드를 담기 위해서 ArrayList 객체인 threads를 만든 후 쓰레드 생성시 생성된 객체를 threads에 저장
 		
-		  for (int i = 0; i < 10; i++) {  // 총 10개의 쓰레드를 생성하여 실행한다.
-			  ThreadTest thread = new ThreadTest(i);
+		  for (int i = 0; i < 10; i++) {  // 총 10개의 쓰레드를 생성하여 실행한다.			  
+			  Thread thread = new Thread(new RunnableTest(i)); 
 			  thread.start();
 			  threads.add(thread);
 	        }
