@@ -27,6 +27,7 @@ public class RunnableTest implements Runnable{ // Thread를 extends 하던 것�
      * 쓰레드는 순서에 상관없이 동시에 실행된다. ( 그래서 0~9번 순차적이 아닌 뒤죽박죽 )
      * 더욱 재밌는 사실은 쓰레드가 종료되기 전에 main 메서드가 종료되었다는 사실이다.
      */
+    @Override
     public void run() { // 스레드 실행 메서드
         System.out.println(this.seq + " thread start.");  // 쓰레드 시작
         try {
