@@ -28,17 +28,18 @@ public class ServerSocketTest {
 				while (true) {
 					System.out.println("연결을 기다리는 중...");
 					
-					/*클라이언트로부터 연결요청이 오면 연결을 맺고 클라이언트 소켓을 생성해 리턴한다.
+					/* 클라이언트로부터 연결요청이 오면 연결을 맺고 클라이언트 소켓을 생성해 리턴한다.
 					accept()메소드는 클라이언트가 연결 요청하기 전까지 블로킹 되는데, 블로킹이란 스레드가 대기상태가 된다는 뜻이다. */ 
 					Socket socket = serverSocket.accept();
 					
 					InetSocketAddress isa = (InetSocketAddress) socket.getRemoteSocketAddress();
 					
-					System.out.println("연결 수락됨" + isa.getHostName());
+					System.out.println("연결 수락됨 : " + isa.getHostName());
 					
 					// 소켓 -> 서버
 					BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));	// 데이터를 읽어옴
 					String line = reader.readLine(); 
+					System.out.println("넘어온 데이터 :" + line);
 					
 					// 서버 -> 소켓
 					PrintWriter writer = new PrintWriter(new OutputStreamWriter(socket.getOutputStream())); // 소켓으로 데이터를 바깥으로 보냄
