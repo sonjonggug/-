@@ -9,7 +9,7 @@ public class Main {
 //		
 //		RunnableTest runnableTest = new RunnableTest();
 //				
-//		runnableTest.RunnableTest2();
+		runnableTest.RunnableTest2();
 		
 
 		
