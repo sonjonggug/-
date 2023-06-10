@@ -27,13 +27,13 @@ public class ClientSocketTest {
 		
 				//클라이언트 -> 소켓
 				String msg= "안녕하세요!";
-				PrintWriter writer = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
+				PrintWriter writer = new PrintWriter(new OutputStreamWriter(socket.getOutputStream())); // outputStream ( 출력 , 쓰기 )
 				writer.println(msg);  //서버로 데이터를 전송한다. 
 				writer.flush();   //버퍼 안에 있는 값들을 전부 비워준다. 
 				System.out.println("데이터 전송 완료!");
 				
 				//소켓 -> 클라이언트
-				BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+				BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream())); // inputStream ( 입력 , 읽기 )
 				String line = reader.readLine();
 				System.out.println("데이터 받기 성공! :"+line);  //서버와 통신이 완료되어 "안녕하세요"라는 값을 가지고 온다.
 				
