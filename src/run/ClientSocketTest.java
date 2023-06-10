@@ -27,12 +27,16 @@ public class ClientSocketTest {
 		
 				//클라이언트 -> 소켓
 				String msg= "안녕하세요!";
-				PrintWriter writer = new PrintWriter(new OutputStreamWriter(socket.getOutputStream())); // outputStream ( 출력 , 쓰기 )
+				
+				// outputStream : 데이터를 쓰는 데 사용되며, 파일, 네트워크 연결, 화면 출력 등 다양한 대상에 데이터를 출력할 수 있음
+				PrintWriter writer = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));  
+				
 				writer.println(msg);  //서버로 데이터를 전송한다. 
 				writer.flush();   //버퍼 안에 있는 값들을 전부 비워준다. 
 				System.out.println("데이터 전송 완료!");
 				
-				//소켓 -> 클라이언트
+				// 소켓 -> 클라이언트				
+				// inputStream : 데이터를 읽어들이는 데에 사용되며, 파일, 네트워크 연결, 키보드 입력 등 다양한 소스로부터 데이터를 읽어올 수 있음
 				BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream())); // inputStream ( 입력 , 읽기 )
 				String line = reader.readLine();
 				System.out.println("데이터 받기 성공! :"+line);  //서버와 통신이 완료되어 "안녕하세요"라는 값을 가지고 온다.
